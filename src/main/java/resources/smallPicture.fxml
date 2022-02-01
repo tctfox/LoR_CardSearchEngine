@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #696969;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+   <children>
+      <GridPane layoutY="-1.0" prefHeight="1080.0" prefWidth="1920.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="955.0" minWidth="10.0" prefWidth="588.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="1446.0" minWidth="10.0" prefWidth="1332.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="892.0" minHeight="9.0" prefHeight="57.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="958.0" minHeight="10.0" prefHeight="957.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ImageView fx:id="myCardImageView" fitHeight="961.0" fitWidth="589.0" onMouseClicked="#displayFullImage" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="10.0" prefWidth="436.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="257.0" minWidth="10.0" prefWidth="207.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="searchTextField" maxWidth="-Infinity" minWidth="-Infinity" onAction="#searchTextCardImageFieldAction" prefHeight="28.0" prefWidth="305.0" promptText="Search cards here" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#displayCardImage" prefHeight="28.0" prefWidth="102.0" text="Search" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
