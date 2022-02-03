@@ -2,8 +2,6 @@ package gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.searchCard;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -47,7 +44,7 @@ public class Controller {
         String searchString = searchTextField.getText();
         searchCard searcher = new searchCard();
 
-        String path = searcher.searchCardExact(searchString).getFullPicture();
+        String path = searcher.searchCardExact(searchString).getFullAbsolutePath();
 
         Image myImage = new Image(path);
         myFullImageView.setImage(myImage);
@@ -58,7 +55,7 @@ public class Controller {
         String searchString = searchTextField.getText();
         searchCard searcher = new searchCard();
 
-        String path = searcher.searchCardExact(searchString).getFullPicture();
+        String path = searcher.searchCardExact(searchString).getFullAbsolutePath();
 
         Image myImage = new Image(path);
         myFullImageView.setImage(myImage);
@@ -71,7 +68,7 @@ public class Controller {
         String searchString = searchTextField.getText();
         searchCard searcher = new searchCard();
 
-        String path = searcher.searchCardExact(searchString).getGamePicture();
+        String path = searcher.searchCardExact(searchString).getGameAbsolutePath();
 
         Image myImage = new Image(path);
         myCardImageView.setImage(myImage);
@@ -86,7 +83,7 @@ public class Controller {
         String searchString = searchTextField.getText();
         searchCard searcher = new searchCard();
 
-        String path = searcher.searchCardExact(searchString).getGamePicture();
+        String path = searcher.searchCardExact(searchString).getGameAbsolutePath();
 
         Image myImage = new Image(path);
         myCardImageView.setImage(myImage);

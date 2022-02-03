@@ -1,47 +1,38 @@
 package dbTesting;
+import java.io.FileNotFoundException;
 import java.sql.*;
 
 public class dbtest {
 
-    public static void createNewDatabase(String fileName) {
-
-        String url = "jdbc:sqlite:src/main/java/resources/"+fileName;
-
-        try (Connection conn = DriverManager.getConnection(url)) {
-            if (conn != null) {
-                DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("A new database has been created.");
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static void createNewTable() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:src/main/java/resources/test.db";
-
-        // SQL statement for creating a new table
-        String sql = "CREATE TABLE IF NOT EXISTS warehouses (\n"
-                + "	id integer PRIMARY KEY,\n"
-                + "	name text NOT NULL,\n"
-                + "	capacity real\n"
-                + ");";
-
-        try (Connection conn = DriverManager.getConnection(url);
-             Statement stmt = conn.createStatement()) {
-            // create a new table
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    private static final String dbUrl = "jdbc:sqlite:src/main/java/resources/Cards.db";
 
     public static void main(String[] args) {
-        createNewDatabase("test.db");
-        createNewTable();
+
+        searchByName("Zed");
+
+
+    }
+
+
+    public static void searchByName(String searchName) {
+
+        String sql = "SELECT * FROM cards where name ='"+searchName+"'";
+
+        try (Connection conn = DriverManager.getConnection(dbUrl);
+             Statement stmt = conn.createStatement()) {
+
+            ResultSet resultSet = stmt.executeQuery(sql);
+
+            while (resultSet.next()) {
+                System.out.println("-----------------------------------------------------");
+                System.out.println(resultSet.getString("name"));
+                System.out.println(resultSet.getString("descriptionraw"));
+                System.out.println(resultSet.getString("fullabsolutepath"));
+                System.out.println("-----------------------------------------------------");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 
