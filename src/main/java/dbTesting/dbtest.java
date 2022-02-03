@@ -1,39 +1,27 @@
 package dbTesting;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.sql.*;
 
 public class dbtest {
 
     private static final String dbUrl = "jdbc:sqlite:src/main/java/resources/Cards.db";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException, FileNotFoundException {
 
-        searchByName("Zed");
-
+        dbCardIndexing indexyer =  new dbCardIndexing();
+        indexyer.parseFileInfo("/globals-en_us.json");
 
     }
 
 
-    public static void searchByName(String searchName) {
 
-        String sql = "SELECT * FROM cards where name ='"+searchName+"'";
 
-        try (Connection conn = DriverManager.getConnection(dbUrl);
-             Statement stmt = conn.createStatement()) {
-
-            ResultSet resultSet = stmt.executeQuery(sql);
-
-            while (resultSet.next()) {
-                System.out.println("-----------------------------------------------------");
-                System.out.println(resultSet.getString("name"));
-                System.out.println(resultSet.getString("descriptionraw"));
-                System.out.println(resultSet.getString("fullabsolutepath"));
-                System.out.println("-----------------------------------------------------");
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
 
 }

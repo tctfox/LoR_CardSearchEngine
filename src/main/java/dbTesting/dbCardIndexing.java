@@ -97,6 +97,27 @@ public class dbCardIndexing {
 
         }
     }
+
+    public void parseFileInfo(String location) throws FileNotFoundException, SQLException{
+        JsonElement fileElement = null;
+
+        try (InputStream is = this.getClass().getResourceAsStream(location);
+             Reader rd = new InputStreamReader(is, "UTF-8"); ) {
+            fileElement = JsonParser.parseReader(rd);
+            JsonObject jsonObject = fileElement.getAsJsonObject();
+            System.out.println(jsonObject.get("vocabTerms"));
+            JsonArray jsonArray = jsonObject.getAsJsonArray("vocabTerms");
+            System.out.println(jsonArray.get(0));
+
+
+
+
+        } catch (Exception ex) {
+            System.out.println("failed to read: "+ex.getMessage());
+        }
+    }
+
+
     public void parseAllCards() throws FileNotFoundException, SQLException {
         parseFile("/set1-en_us.json");
         parseFile("/set2-en_us.json");
