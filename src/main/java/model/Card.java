@@ -67,6 +67,10 @@ public class Card {
         return beginning + "s" + ending;
     }
 
+    public String getCardCode() {
+        return cardCode;
+    }
+
     @Override
     public String toString() {
         String spacer = "-----------------------------------";

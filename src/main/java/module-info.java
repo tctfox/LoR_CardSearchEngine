@@ -7,5 +7,7 @@ module btx.prog.one.exes {
     requires com.google.gson;
     requires javafx.fxml;
     requires javafx.graphics;
+    requires java.desktop;
+    requires java.sql;
     exports gui;
 }
