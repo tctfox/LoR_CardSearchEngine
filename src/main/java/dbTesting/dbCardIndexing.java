@@ -100,21 +100,54 @@ public class dbCardIndexing {
 
     public void parseFileInfo(String location) throws FileNotFoundException, SQLException{
         JsonElement fileElement = null;
+        JsonArray jsonArray1 = null;
+        JsonArray jsonArray2 = null;
 
         try (InputStream is = this.getClass().getResourceAsStream(location);
              Reader rd = new InputStreamReader(is, "UTF-8"); ) {
             fileElement = JsonParser.parseReader(rd);
             JsonObject jsonObject = fileElement.getAsJsonObject();
-            System.out.println(jsonObject.get("vocabTerms"));
-            JsonArray jsonArray = jsonObject.getAsJsonArray("vocabTerms");
-            System.out.println(jsonArray.get(0));
-
-
-
-
+            jsonArray1 = jsonObject.getAsJsonArray("vocabTerms");
+            jsonArray2 = jsonObject.getAsJsonArray("keywords");
         } catch (Exception ex) {
             System.out.println("failed to read: "+ex.getMessage());
         }
+
+        for (JsonElement infoElement: jsonArray1){
+            JsonObject infoObject = infoElement.getAsJsonObject();
+            String name = infoObject.get("name").getAsString();
+            String description = infoObject.get("description").getAsString();
+            String type = "VocabTerm";
+
+            //Add stuff to db
+            String sql = "INSERT INTO misc (name, description, type)"
+                    + "VALUES (?,?,?)";
+            Connection conn = DriverManager.getConnection(dbUrl);
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.setString(2, description);
+            statement.setString(3, type);
+            statement.executeUpdate();
+
+        }
+
+        for (JsonElement infoElement: jsonArray2){
+            JsonObject infoObject = infoElement.getAsJsonObject();
+            String name = infoObject.get("name").getAsString();
+            String description = infoObject.get("description").getAsString();
+            String type = "KeyWord";
+
+            //Add stuff to db
+            String sql = "INSERT INTO misc (name, description, type)"
+                    + "VALUES (?,?,?)";
+            Connection conn = DriverManager.getConnection(dbUrl);
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.setString(2, description);
+            statement.setString(3, type);
+            statement.executeUpdate();
+        }
+
     }
 
 

@@ -14,9 +14,6 @@ public class dbtest {
 
     public static void main(String[] args) throws SQLException, FileNotFoundException {
 
-        dbCardIndexing indexyer =  new dbCardIndexing();
-        indexyer.parseFileInfo("/globals-en_us.json");
-
     }
 
 

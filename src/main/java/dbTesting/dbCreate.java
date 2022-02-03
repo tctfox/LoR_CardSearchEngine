@@ -21,7 +21,7 @@ public class dbCreate {
         }
     }
 
-    public static void createNewTable() {
+    public static void createCardTable() {
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS cards (\n"
@@ -43,15 +43,40 @@ public class dbCreate {
         }
     }
 
+    public static void createMiscTable() {
+
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS misc (\n"
+                + "	name text NOT NULL,\n"
+                + "	description text,\n"
+                + "	type text \n"
+                + ");";
+
+        try (Connection conn = DriverManager.getConnection(dbCreate.dbUrl);
+             Statement stmt = conn.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void fillTableCard() throws SQLException, FileNotFoundException {
         dbCardIndexing cardIndexer = new dbCardIndexing();
         cardIndexer.parseAllCards();
     }
 
+    public static void fillInfoCard() throws SQLException, FileNotFoundException {
+        dbCardIndexing cardIndexer = new dbCardIndexing();
+        cardIndexer.parseFileInfo("/globals-en_us.json");
+    }
+
     public static void dbFullCreate() throws SQLException, FileNotFoundException {
         createNewDatabase();
-        createNewTable();
+        createCardTable();
+        createMiscTable();
         fillTableCard();
+        fillInfoCard();
     }
 
 }
