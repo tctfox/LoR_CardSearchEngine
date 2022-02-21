@@ -60,7 +60,7 @@ public class dbCardIndexing {
             //Get Type
             CardTypes cardType = CardTypes.NONE;
             if (cardObject.get("type").getAsString().equals("Unit")){
-                if(cardObject.get("supertype").getAsString().equals("champion")){
+                if(cardObject.get("supertype").getAsString().equals("Champion")){
                     cardType = CardTypes.CHAMPION;
                 }
                 else{
@@ -73,6 +73,14 @@ public class dbCardIndexing {
             if (cardObject.get("type").getAsString().equals("Spell")){
                 cardType = CardTypes.SPELL;
             }
+            if (cardObject.get("type").getAsString().equals("Ability")){
+                cardType = CardTypes.SKILL;
+            }
+            if (cardObject.get("type").getAsString().equals("Trap")){
+                cardType = CardTypes.TRAP;
+            }
+
+
 
 
             //Create card and add it to the Array
