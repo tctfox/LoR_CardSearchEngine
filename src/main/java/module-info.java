@@ -9,5 +9,6 @@ module btx.prog.one.exes {
     requires javafx.graphics;
     requires java.desktop;
     requires java.sql;
+    requires commons.io;
     exports gui;
 }

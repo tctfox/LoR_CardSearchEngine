@@ -1,7 +1,12 @@
 package dbTesting;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.*;
+import org.apache.commons.io.FileUtils;
 
 public class dbCreate {
 
@@ -71,7 +76,23 @@ public class dbCreate {
         cardIndexer.parseFileInfo("/globals-en_us.json");
     }
 
+    public static void getJsons() throws IOException {
+        for (int i = 1; i < 6; i++){
+            String urlString = String.format("https://dd.b.pvp.net/latest/set%o/en_us/data/set%o-en_us.json",i,i);
+            String setDestinationString = String.format("src/main/java/resources/set%o-en_us.json",i);
+
+            URL setwebsite = new URL(urlString);
+            File set = new File(setDestinationString);
+            FileUtils.copyURLToFile(setwebsite, set);
+        }
+    }
+
     public static void dbFullCreate() throws SQLException, FileNotFoundException {
+        try {
+            getJsons();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         createNewDatabase();
         createCardTable();
         createMiscTable();
