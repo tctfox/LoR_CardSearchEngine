@@ -11,14 +11,13 @@ public class jsongettests {
 
     public static void main(String[] args) throws IOException {
 
-        for (int i = 1; i < 6; i++){
-            String urlString = String.format("https://dd.b.pvp.net/latest/set%o/en_us/data/set%o-en_us.json",i,i);
-            String setDestinationString = String.format("src/main/java/resources/set%o-en_us.json",i);
+        String urlString = "https://docs.google.com/spreadsheets/d/1Xlh2kg7gLzvqugqGPpI4PidAdM5snggbJ44aRLuik5E/export?format=csv&id=1Xlh2kg7gLzvqugqGPpI4PidAdM5snggbJ44aRLuik5E&gid=975656893";
+        String setDestinationString = "src/main/java/resources/lor_ranked_data_allDecks.csv";
 
-            URL setwebsite = new URL(urlString);
-            File set = new File(setDestinationString);
-            FileUtils.copyURLToFile(setwebsite, set);
-        }
+        URL setwebsite = new URL(urlString);
+        File set = new File(setDestinationString);
+        FileUtils.copyURLToFile(setwebsite, set);
+
     }
 
 }
