@@ -27,6 +27,15 @@ public class dbCreate {
 
     public static void createCardTable() {
 
+        String dropStatement = "DROP TABLE IF EXISTS cards";
+        try (Connection conn = DriverManager.getConnection(dbCreate.dbUrl);
+             Statement stmt = conn.createStatement()) {
+            // create a new table
+            stmt.execute(dropStatement);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS cards (\n"
                 + "	name text NOT NULL,\n"
@@ -48,6 +57,15 @@ public class dbCreate {
     }
 
     public static void createMiscTable() {
+
+        String dropStatement = "DROP TABLE IF EXISTS misc";
+        try (Connection conn = DriverManager.getConnection(dbCreate.dbUrl);
+             Statement stmt = conn.createStatement()) {
+            // create a new table
+            stmt.execute(dropStatement);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS misc (\n"
@@ -93,6 +111,18 @@ public class dbCreate {
             e.printStackTrace();
         }
         createNewDatabase();
+        createCardTable();
+        createMiscTable();
+        fillTableCard();
+        fillMiscInfoTable();
+    }
+
+    public static void dbFullFill() throws SQLException, FileNotFoundException {
+        try {
+            getJsons();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         createCardTable();
         createMiscTable();
         fillTableCard();

@@ -13,7 +13,7 @@ public class dbtest {
     private static final String dbUrl = "jdbc:sqlite:src/main/java/resources/Cards.db";
 
     public static void main(String[] args) throws SQLException, FileNotFoundException {
-        dbCreate.dbFullCreate();
+        dbCreate.dbFullFill();
     }
 
 
