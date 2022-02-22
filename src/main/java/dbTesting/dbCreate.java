@@ -3,7 +3,6 @@ package dbTesting;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
 import org.apache.commons.io.FileUtils;
@@ -71,7 +70,7 @@ public class dbCreate {
         cardIndexer.parseAllCards();
     }
 
-    public static void fillInfoCard() throws SQLException, FileNotFoundException {
+    public static void fillMiscInfoTable() throws SQLException, FileNotFoundException {
         dbCardIndexing cardIndexer = new dbCardIndexing();
         cardIndexer.parseFileInfo("/globals-en_us.json");
     }
@@ -97,7 +96,7 @@ public class dbCreate {
         createCardTable();
         createMiscTable();
         fillTableCard();
-        fillInfoCard();
+        fillMiscInfoTable();
     }
 
 }
