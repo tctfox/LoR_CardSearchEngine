@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import model.Card2;
 import model.CardTypes;
 
 import java.io.FileNotFoundException;
@@ -11,8 +12,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class jsontest1 {
+
+    ArrayList<Card2> cardlist = new ArrayList<>();
 
 
     public void parseFile(String location) throws FileNotFoundException, SQLException {
@@ -37,8 +41,6 @@ public class jsontest1 {
             String descriptionRaw = cardObject.get("descriptionRaw").getAsString();
             String flavorText = cardObject.get("flavorText").getAsString();
             String cardCode = cardObject.get("cardCode").getAsString();
-
-            System.out.println(cardObject.get("regions").getAsJsonArray());
 
 
             //Get Assets Array
@@ -70,6 +72,13 @@ public class jsontest1 {
             }
 
 
+            Card2 localCard = new Card2(cardName, descriptionRaw, flavorText, cardCode, cardType, fullAbsolutePath, gameAbsolutePath);
+
+            JsonArray cardRegionsJsonArray = cardObject.getAsJsonArray("regions");
+            for (JsonElement regionelement : cardRegionsJsonArray){
+                localCard.addRegion(regionelement.toString());
+            }
+            cardlist.add(localCard);
         }
     }
 }
