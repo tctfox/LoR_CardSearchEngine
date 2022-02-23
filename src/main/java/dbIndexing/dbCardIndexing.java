@@ -8,10 +8,11 @@ import model.Card;
 import model.CardTypes;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class dbCardIndexing {

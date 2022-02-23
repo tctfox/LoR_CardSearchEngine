@@ -10,6 +10,4 @@ module btx.prog.one.exes {
     requires java.desktop;
     requires java.sql;
     requires commons.io;
-    exports gui;
-    exports gui2;
 }
