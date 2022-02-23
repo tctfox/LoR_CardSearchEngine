@@ -1,0 +1,7 @@
+package model;
+
+public enum cardRegions {
+
+    BANDLE_CITY, BILGEWATER, DEMACIA, FRELJORD, IONIA, NOXUS, PILTOVER_ZAUN, SHADOW_ISLES, SHURIMA, TARGON
+
+}

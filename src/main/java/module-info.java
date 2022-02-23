@@ -11,4 +11,5 @@ module btx.prog.one.exes {
     requires java.sql;
     requires commons.io;
     exports gui;
+    exports gui2;
 }
