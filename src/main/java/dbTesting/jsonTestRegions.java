@@ -14,7 +14,7 @@ import java.io.Reader;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class jsontest1 {
+public class jsonTestRegions {
 
     ArrayList<Card2> cardlist = new ArrayList<>();
 
